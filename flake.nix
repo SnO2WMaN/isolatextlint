@@ -1,6 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    npmlock2nix = {
+      url = "github:nix-community/npmlock2nix";
+      flake = false;
+    };
 
     # dev
     devshell.url = "github:numtide/devshell";
@@ -19,20 +23,27 @@
     devshell,
     ...
   } @ inputs:
-    flake-utils.lib.eachDefaultSystem   (
+    {
+      overlays.default = import ./packages/overlay.nix;
+    }
+    // flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
             devshell.overlay
+            self.overlays.default
             (final: prev:
               with inputs; {
                 yamlfmt = yamlfmt.packages.${system}.yamlfmt;
+                npmlock2nix = final.callPackage npmlock2nix {};
               })
           ];
         };
       in {
-        devShell = pkgs.devshell.mkShell {
+        packages.textlint-rule-max-comma = pkgs.textlintPackages.rules.max-comma;
+
+        devShells.default = pkgs.devshell.mkShell {
           commands = with pkgs; [
             {
               package = "treefmt";
