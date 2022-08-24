@@ -1,6 +1,6 @@
 {pkgs, ...}:
 pkgs.mkYarnPackage rec {
-  name = "textlint-rule-max-comma";
+  name = "isolatextlint-rule-max-comma";
   version = (pkgs.lib.importJSON (src + "/package.json")).version;
   src = pkgs.fetchFromGitHub {
     owner = "textlint-rule";

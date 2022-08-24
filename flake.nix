@@ -41,7 +41,10 @@
           ];
         };
       in {
-        packages.textlint-rule-max-comma = pkgs.textlintPackages.rules.max-comma;
+        packages = {
+          isolatextlint = pkgs.isolatextlint;
+          isolatextlint-rule-max-comma = pkgs.isolatextlintPackages.rules.max-comma;
+        };
 
         devShells.default = pkgs.devshell.mkShell {
           commands = with pkgs; [
@@ -58,6 +61,10 @@
             ]
           );
         };
+
+        checks =
+          self.packages.${system}.packages
+          // {};
       }
     );
 }
