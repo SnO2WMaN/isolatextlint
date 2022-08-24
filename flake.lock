@@ -268,21 +268,7 @@
         "flake-utils": "flake-utils_2",
         "nixpkgs": "nixpkgs_2",
         "npmlock2nix": "npmlock2nix",
-        "textlint": "textlint",
         "yamlfmt": "yamlfmt"
-      }
-    },
-    "textlint": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1661296350,
-        "narHash": "sha256-mMN6TDev8tvsa0cBuJnB5CLvJw/CJC8OLlOuogeSTb0=",
-        "path": "/home/sno2wman/src/ghq/github.com/textlint/textlint",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/sno2wman/src/ghq/github.com/textlint/textlint",
-        "type": "path"
       }
     },
     "utils": {
