@@ -47,12 +47,23 @@
         };
       in {
         packages = flake-utils.lib.flattenTree ({
+            textlint = let
+              nm = pkgs.npmlock2nix.internal.node_modules {src = ./temporary;};
+            in
+              pkgs.writers.writeBashBin "textlint" "${nm}/bin/textlint $@";
+
             cli = pkgs.isolatextlint.cli;
+
             # testpilot-1 = pkgs.callPackage ./testpilot/1/configs {};
           }
           // (with pkgs.lib.attrsets;
             mapAttrs' (key: value: (nameValuePair ("isolatextlint-rule-" + key) value))
             pkgs.isolatextlintPackages.rules));
+
+        apps.textlint = flake-utils.lib.mkApp {
+          drv = self.packages.${system}.textlint;
+          name = "textlint";
+        };
 
         devShells.default = pkgs.devshell.mkShell {
           commands = with pkgs; [
@@ -69,7 +80,6 @@
             ]
           );
         };
-        devShells.temp = pkgs.callPackage ./temporary {};
 
         checks =
           self.packages.${system}

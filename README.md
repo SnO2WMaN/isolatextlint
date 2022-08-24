@@ -5,5 +5,5 @@
 Currently
 
 ```shell
-nix develop ".#temp" --command textlint --config ./temporary/.textlintrc.json ./temporary/sample.txt
+nix run ".#textlint" -- --config ./temporary/.textlintrc.json  ./temporary/sample.txt
 ```
