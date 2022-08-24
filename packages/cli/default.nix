@@ -29,15 +29,15 @@
 
   ast-node-types = mkInternalYarnPkg "ast-node-types" [];
   ast-tester = mkInternalYarnPkg "ast-tester" [ast-node-types];
-  ast-traverse = mkInternalYarnPkg "ast-traverse" [ast-node-types markdown-to-ast]; # TODO:
+  ast-traverse = mkInternalYarnPkg "ast-traverse" [ast-node-types markdown-to-ast];
   feature-flag = mkInternalYarnPkg "feature-flag" [];
-  fixer-formatter = mkInternalYarnPkg "fixer-formatter" [module-interop types]; # TODO:
-  kernel = mkInternalYarnPkg "kernel" [ast-node-types ast-tester ast-traverse feature-flag source-code-fixer types utils]; # TODO:
-  linter-formatter = mkInternalYarnPkg "linter-formatter" [module-interop types]; # TODO:
+  fixer-formatter = mkInternalYarnPkg "fixer-formatter" [module-interop types];
+  kernel = mkInternalYarnPkg "kernel" [ast-node-types ast-tester ast-traverse feature-flag source-code-fixer types utils];
+  linter-formatter = mkInternalYarnPkg "linter-formatter" [module-interop types];
   markdown-to-ast = mkInternalYarnPkg "markdown-to-ast" [ast-tester];
   module-interop = mkInternalYarnPkg "module-interop" [types];
   source-code-fixer = mkInternalYarnPkg "source-code-fixer" [types];
-  text-to-ast = mkInternalYarnPkg "text-to-ast" [ast-node-types ast-tester]; # TODO:
+  text-to-ast = mkInternalYarnPkg "text-to-ast" [ast-node-types ast-tester];
   textlint-plugin-markdown = mkInternalYarnPkg "textlint-plugin-markdown" [markdown-to-ast kernel];
   textlint-plugin-text = mkInternalYarnPkg "textlint-plugin-text" [kernel text-to-ast];
   types = mkInternalYarnPkg "types" [ast-node-types markdown-to-ast];
