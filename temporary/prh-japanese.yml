@@ -1,0 +1,5 @@
+# https://github.com/herp-inc/engineering-careers/blob/aab039541c3526eacf93138a69b314a1a2df3100/prh-rules/japanese.yml
+version: 1
+rules:
+  - expected: します
+    pattern: いたします

@@ -5,6 +5,7 @@
       url = "github:nix-community/npmlock2nix";
       flake = false;
     };
+    nix-filter.url = "github:numtide/nix-filter";
 
     # dev
     devshell.url = "github:numtide/devshell";
@@ -21,6 +22,7 @@
     nixpkgs,
     flake-utils,
     devshell,
+    nix-filter,
     ...
   } @ inputs:
     {
@@ -33,8 +35,9 @@
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
-            devshell.overlay
             self.overlays.default
+            devshell.overlay
+            nix-filter.overlays.default
             (final: prev:
               with inputs; {
                 yamlfmt = yamlfmt.packages.${system}.yamlfmt;
@@ -44,7 +47,8 @@
         };
       in {
         packages = flake-utils.lib.flattenTree ({
-            isolatextlint = pkgs.isolatextlint;
+            cli = pkgs.isolatextlint.cli;
+            # testpilot-1 = pkgs.callPackage ./testpilot/1/configs {};
           }
           // (with pkgs.lib.attrsets;
             mapAttrs' (key: value: (nameValuePair ("isolatextlint-rule-" + key) value))
@@ -65,6 +69,7 @@
             ]
           );
         };
+        devShells.temp = pkgs.callPackage ./temporary {};
 
         checks =
           self.packages.${system}

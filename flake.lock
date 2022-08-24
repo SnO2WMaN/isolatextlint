@@ -151,6 +151,21 @@
     },
     "nix-filter": {
       "locked": {
+        "lastModified": 1661201956,
+        "narHash": "sha256-RizGJH/buaw9A2+fiBf9WnXYw4LZABB5kMAZIEE5/T8=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "3b821578685d661a10b563cba30b1861eec05748",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
+    "nix-filter_2": {
+      "locked": {
         "lastModified": 1661179195,
         "narHash": "sha256-1tM5Xu5FhLPZ2JaYIyQYsE7Ixg/GgBJK4bpjONhFcD8=",
         "owner": "ilkecan",
@@ -266,6 +281,7 @@
         "devshell": "devshell",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils_2",
+        "nix-filter": "nix-filter",
         "nixpkgs": "nixpkgs_2",
         "npmlock2nix": "npmlock2nix",
         "yamlfmt": "yamlfmt"
@@ -292,7 +308,7 @@
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_4",
         "gomod2nix": "gomod2nix",
-        "nix-filter": "nix-filter",
+        "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
