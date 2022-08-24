@@ -1,5 +1,5 @@
 final: prev: {
-  textlintPackages = {
+  isolatextlint = final.callPackage ./isolatextlint {};
     rules = with final.lib; (
       listToAttrs (
         map (name: {
