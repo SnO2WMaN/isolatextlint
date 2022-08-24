@@ -26,7 +26,9 @@
     {
       overlays.default = import ./packages/overlay.nix;
     }
-    // flake-utils.lib.eachDefaultSystem (
+    // flake-utils.lib.eachSystem [
+      "x86_64-linux"
+    ] (
       system: let
         pkgs = import nixpkgs {
           inherit system;
@@ -41,10 +43,12 @@
           ];
         };
       in {
-        packages = {
-          isolatextlint = pkgs.isolatextlint;
-          isolatextlint-rule-max-comma = pkgs.isolatextlintPackages.rules.max-comma;
-        };
+        packages = flake-utils.lib.flattenTree ({
+            isolatextlint = pkgs.isolatextlint;
+          }
+          // (with pkgs.lib.attrsets;
+            mapAttrs' (key: value: (nameValuePair ("isolatextlint-rule-" + key) value))
+            pkgs.isolatextlintPackages.rules));
 
         devShells.default = pkgs.devshell.mkShell {
           commands = with pkgs; [
@@ -63,7 +67,7 @@
         };
 
         checks =
-          self.packages.${system}.packages
+          self.packages.${system}
           // {};
       }
     );

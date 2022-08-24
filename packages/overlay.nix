@@ -11,6 +11,13 @@ final: prev: {
             {};
         }) [
           "max-comma"
+          "max-ten"
+          "no-double-negative-ja"
+          # TODO: "no-doubled-conjunction"
+          "no-dropping-the-ra"
+          "no-mix-dearu-desumasu"
+          "prh"
+          # TODO: "spellcheck-tech-word"
         ]
       )
     );
