@@ -1,5 +1,8 @@
 final: prev: {
-  isolatextlint = final.callPackage ./isolatextlint {};
+  isolatextlint = {
+    cli = final.callPackage ./cli {};
+    builder = final.callPackage ./builder {};
+  };
   isolatextlintPackages = {
     rules = with final.lib; (
       listToAttrs (
